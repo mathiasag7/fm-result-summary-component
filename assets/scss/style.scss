@@ -1,0 +1,227 @@
+/* Colors */
+
+/* Primary */
+
+$light-red: hsla(0, 100%, 67%);
+$orangey-yellow: hsla(39, 100%, 56%);
+$green-teal: hsla(166, 100%, 37%);
+$cobalt-blue: hsla(234, 85%, 45%);
+
+/* Transparent color */
+
+$transparent-light-red: hsla(0, 100%, 67%, .2);
+$transparent-orangey-yellow: hsla(39, 100%, 56%, .2);
+$transparent-green-teal: hsla(166, 100%, 37%, .2);
+$transparent-cobalt-blue: hsla(234, 85%, 45%, .2);
+
+/* Gradients */
+
+$light-slate-blue: hsl(252, 100%, 67%);
+$light-royal-blue: hsl(241, 81%, 54%);
+
+$violet-blue: hsla(256, 72%, 46%, 1);
+$persian-blue: hsla(241, 72%, 46%, .3);
+
+/* Neutral */
+
+$white: hsl(0, 0%, 100%);
+$pale-blue: hsl(221, 100%, 96%);
+$light-lavender: hsl(241, 100%, 89%);
+$dark-gray-blue: hsl(224, 30%, 27%);
+
+
+/* Typography */
+
+@font-face {
+    font-family: "Hanken Grotesk";
+    src: url("../fonts/HankenGrotesk-VariableFont_wght.ttf");
+}
+
+$weight-semibold: 500;
+$weight-bold: 700;
+$weight-extrabold: 800;
+
+/* Mixin */
+
+@mixin display-flex($direction, $justify-content, $align-item) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    align-items: $align-item;
+}
+
+@mixin display-grid($grid-rows, $grid-columns) {
+    display: grid;
+    grid-template-columns: $grid-columns;
+    grid-template-rows: $grid-rows;
+}
+
+@mixin set-icon($url) {
+    &::before {
+        margin-right: .8rem;
+        vertical-align: middle;
+        content: $url;
+    }
+}
+
+
+/* Content */
+
+body {
+    font-size: 18px;
+    font-family: "Hanken Grotesk", sans-serif;
+    background-color: $pale-blue;
+}
+
+main {
+    @include display-flex(row, space-around, center);
+    height: 100vh;
+}
+
+.h3 {
+    font-size: 23px;
+}
+
+.card {
+    @include display-grid(1fr, repeat(2, 20.7em));
+    z-index: 1024;
+    background-color: $white;
+    border-radius: 30px;
+
+    @media screen and (max-width: 800px) {
+        grid-template-columns: none;
+        grid-template-rows: none;
+        margin-top: 4rem;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .first-section {
+        @include display-flex(column, center, center);
+        background: linear-gradient(to bottom, $light-slate-blue, 30%, $light-royal-blue);
+        color: $light-lavender;
+        border-radius: 30px;
+        padding: 30px 0;
+
+        .fs-score {
+            @include display-flex(column, center, center);
+            border-radius: 200px;
+            background: linear-gradient(to bottom, $dark-gray-blue, 30%, $light-royal-blue);
+            width: 200px;
+            height: 200px;
+            z-index: 1;
+
+            .fs-main-score {
+                font-size: 5em;
+                color: $white;
+                font-weight: $weight-extrabold;
+            }
+        }
+
+        .fs-description {
+            @include display-flex(column, center, center);
+            margin: 0 4em;
+            text-align: center;
+
+            .h2 {
+                color: $white;
+                margin-top: 1.2rem;
+                font-size: 40px;
+                font-weight: $weight-semibold;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .second-section {
+        padding: 30px 30px;
+
+        ul {
+            list-style-position: outside;
+            list-style-type: none;
+            padding-left: 0;
+            margin: 35px 5px;
+
+            li {
+                padding: 17px 1rem;
+                margin: 1em 0;
+                border-radius: 10px;
+                @include display-flex(row, space-between, center);
+            }
+
+            .ul-reaction {
+                background: $transparent-light-red;
+
+                &__text {
+                    color: $light-red;
+
+                    @include set-icon(url("../images/icon-reaction.svg"));
+                }
+            }
+
+            .ul-memory {
+                background: $transparent-orangey-yellow;
+
+                &__text {
+                    color: $orangey-yellow;
+
+                    @include set-icon(url("../images/icon-memory.svg"));
+                }
+            }
+
+            .ul-verbal {
+                background: $transparent-green-teal;
+
+                &__text {
+                    color: $green-teal;
+
+                    @include set-icon(url("../images/icon-verbal.svg"));
+                }
+
+            }
+
+            .ul-visual {
+                background: $transparent-cobalt-blue;
+
+                &__text {
+                    color: $cobalt-blue;
+
+                    @include set-icon(url("../images/icon-visual.svg"));
+                }
+            }
+
+        }
+
+        .ss-button {
+            border-radius: 30px;
+            border: none;
+            background-color: $dark-gray-blue;
+            color: $white;
+            padding: 19px 118px;
+            font-weight: $weight-bold;
+            font-size: 18px;
+
+            &:hover {
+                background: linear-gradient(to bottom, $light-slate-blue, 30%, $light-royal-blue);
+            }
+
+            &:focus {
+                background: linear-gradient(to bottom, $light-slate-blue, 30%, $light-royal-blue);
+            }
+        }
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+}
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+
+    a {
+        color: hsl(228, 45%, 44%);
+    }
+}
